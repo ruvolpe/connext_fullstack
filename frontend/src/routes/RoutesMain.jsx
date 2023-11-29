@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
 import Dashboard from "../pages/Dashboard";
-import LogIn from "../pages/LogIn";
-import Register from "../pages/Register";
+import LogIn from "../pages/Login/LogIn";
+import Register from "../pages/Register/Register";
 
 export const RoutesMain = ({ setIsLogin }) => {
   return (

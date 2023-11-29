@@ -1,15 +1,16 @@
+import { StyledDiv, StyledInput, StyledLabel } from "./styles";
+
 export const FormInput = ({ label, id, placeholder, type, register }) => {
   return (
-    <div>
-      {label ? <label htmlFor={id}>{label}</label> : null}
-      ⁠{" "}
-      <input
+    <StyledDiv>
+      {label ? <StyledLabel htmlFor={id}>{label}</StyledLabel> : null}⁠{" "}
+      <StyledInput
         type={type}
         id={id}
         name={id}
         placeholder={placeholder}
         {...register}
       />
-    </div>
+    </StyledDiv>
   );
 };
