@@ -11,6 +11,7 @@ import {
   ContactRead,
   ContactUpdate,
   ContactRepo,
+  ContactReturn,
 } from "./contact.interface";
 
 import { SessionCreate, SessionReturn } from "./session.interface";
@@ -25,6 +26,7 @@ export {
   ContactRead,
   ContactUpdate,
   ContactRepo,
+  ContactReturn,
   SessionCreate,
   SessionReturn,
 };

@@ -10,6 +10,7 @@ import {
   contactSchema,
   contactCreateSchema,
   contactReadSchema,
+  contactUpdateSchema,
 } from "./contact.schema";
 
 import { sessionSchema } from "./session.schema";
@@ -23,5 +24,6 @@ export {
   contactSchema,
   contactCreateSchema,
   contactReadSchema,
+  contactUpdateSchema,
   sessionSchema,
 };
