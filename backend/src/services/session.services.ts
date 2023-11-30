@@ -11,6 +11,7 @@ const createLogin = async ({
 }: SessionCreate): Promise<SessionReturn> => {
   const foundUser: User | null = await userRepository.findOneBy({ email });
   if (!foundUser) throw new AppError("Invalid credentials", 401);
+  console.log(foundUser);
 
   const samePwd: boolean = await compare(password, foundUser.password);
   if (!samePwd) throw new AppError("Invalid credentials", 401);
@@ -21,7 +22,7 @@ const createLogin = async ({
     { subject: foundUser.id.toString(), expiresIn: process.env.EXPIRES_IN! }
   );
 
-  return { token };
+  return { token, id: foundUser.id };
 };
 
 export default { createLogin };

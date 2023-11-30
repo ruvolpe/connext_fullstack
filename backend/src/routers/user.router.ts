@@ -19,7 +19,7 @@ userRouter.post(
   userControllers.create
 );
 
-userRouter.get("", verifyToken, isUserAdmin, userControllers.read);
+userRouter.get("/:id", verifyToken, userControllers.read);
 
 userRouter.use("/:id", ensureUserExists);
 

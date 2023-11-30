@@ -8,8 +8,8 @@ const create = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const read = async (req: Request, res: Response): Promise<Response> => {
-  const users: UserRead = await userServices.readUser();
-  return res.status(200).json(users);
+  const user: UserRead = await userServices.readUser(Number(req.params.id));
+  return res.status(200).json(user);
 };
 
 const update = async (req: Request, res: Response): Promise<Response> => {

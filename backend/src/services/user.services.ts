@@ -10,8 +10,8 @@ const createUser = async (payload: UserCreate): Promise<UserReturn> => {
   return userReturnSchema.parse(user);
 };
 
-const readUser = async (): Promise<UserRead> => {
-  return userReadSchema.parse(await userRepository.find());
+const readUser = async (id: number): Promise<UserRead> => {
+  return userReadSchema.parse(await userRepository.findOne({ where: { id } }));
 };
 
 const updateUser = async (

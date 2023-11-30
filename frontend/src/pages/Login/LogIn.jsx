@@ -6,6 +6,9 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import {
   StyledButton,
+  StyledDiv,
+  StyledDivCircle,
+  StyledDivCircle2,
   StyledForm,
   StyledH1,
   StyledInput,
@@ -29,7 +32,8 @@ function LogIn() {
 
   return (
     <>
-      <div>
+      <StyledDivCircle />
+      <StyledDiv>
         <StyledH1>conext</StyledH1>
         <h2>a sua plataforma de contatos</h2>
         <StyledForm onSubmit={handleSubmit(submit)}>
@@ -41,11 +45,10 @@ function LogIn() {
           {errors.password ? <p>{errors.password.message}</p> : null}
           <StyledButton type="submit">entrar</StyledButton>
         </StyledForm>
-        <div>
-          <p>ainda não possui uma conta?</p>
-          <Link to="/register">cadastre-se</Link>
-        </div>
-      </div>
+        <p>ainda não possui uma conta?</p>
+        <Link to="/register">cadastre-se</Link>
+      </StyledDiv>
+      <StyledDivCircle2 />
     </>
   );
 }

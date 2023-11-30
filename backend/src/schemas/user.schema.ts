@@ -20,7 +20,7 @@ const userCreateSchema = userSchema.omit({
 });
 
 const userReturnSchema = userSchema.omit({ password: true });
-const userReadSchema = userReturnSchema.array();
+const userReadSchema = userReturnSchema;
 
 const userUpdateSchema = userSchema.partial().omit({ admin: true });
 

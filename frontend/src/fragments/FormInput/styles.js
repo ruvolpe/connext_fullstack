@@ -7,8 +7,13 @@ export const StyledDiv = styled.div`
 
 export const StyledInput = styled.input`
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #808080;
+
+  &::placeholder {
+    color: #f0f0f0;
+  }
 `;
 
 export const StyledLabel = styled.label`

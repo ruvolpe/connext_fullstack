@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import LogIn from "../pages/Login/LogIn";
 import Register from "../pages/Register/Register";
 

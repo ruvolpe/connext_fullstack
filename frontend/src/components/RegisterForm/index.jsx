@@ -46,6 +46,7 @@ export const RegisterForm = () => {
         label="telefone"
         register={register("phone")}
       />
+      {errors.phone ? <p>{errors.phone.message}</p> : null}
       <FormInput
         type="password"
         id="password"

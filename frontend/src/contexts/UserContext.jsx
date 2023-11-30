@@ -15,7 +15,8 @@ export const UserProvider = ({ children }) => {
 
     const userLoad = async () => {
       try {
-        const { data } = await api.get(`/users`, {
+        const userId = localStorage.getItem("@USERID");
+        const { data } = await api.get(`/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -46,13 +47,13 @@ export const UserProvider = ({ children }) => {
 
   const userLogin = async (formData) => {
     try {
-      console.log(formData);
       const { data } = await api.post("/login", formData);
-      navigate("/dashboard");
       console.log(data);
+      navigate("/dashboard");
       setUser(data.user);
       localStorage.setItem("@TOKEN", data.token);
       localStorage.setItem("@USERID", data.id);
+      location.reload(true);
     } catch (error) {
       console.log(error);
     }
