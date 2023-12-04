@@ -8,19 +8,20 @@ export const ContactsProvider = ({ children }) => {
   const [contacts, setContact] = useState();
   const token = localStorage.getItem("@TOKEN");
 
+  const contactsLoad = async () => {
+    try {
+      const { data } = await api.get(`/contacts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setContact(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const contactsLoad = async () => {
-      try {
-        const { data } = await api.get(`/contacts`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setContact(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     if (token) {
       contactsLoad();
     }
@@ -33,7 +34,7 @@ export const ContactsProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      location.reload(true);
+      setContact([...contacts, data]);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +47,8 @@ export const ContactsProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      location.reload(true);
+      setContact([...contacts, data]);
+      await contactsLoad();
     } catch (error) {
       console.log(error);
     }
@@ -59,8 +61,7 @@ export const ContactsProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("funcionou");
-      location.reload(true);
+      await contactsLoad();
     } catch (error) {
       console.log(error);
     }

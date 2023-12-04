@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const StyledMain = styled.main`
+  overflow: auto;
+`;
+
 export const StyledDiv = styled.div`
   font-size: 0.75rem;
 `;

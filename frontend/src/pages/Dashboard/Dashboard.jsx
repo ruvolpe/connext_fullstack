@@ -1,12 +1,15 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { StyledDivCircle, StyledDivCircle2 } from "./styles";
+import { StyledDivCircle, StyledDivCircle2, StyledMain } from "./styles";
 import { FormInput } from "../../fragments/FormInput";
 import { contactFormValidation } from "../../components/ContactFormValidation/contactFormValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { StyledButton, StyledForm } from "./styles";
 import { ContactsContext } from "../../contexts/ContactsContext";
+import DeleteSVG from "../../assets/delete.svg";
+import EditSVG from "../../assets/edit.svg";
+import Modal from "../../components/Modal";
 
 function Dashboard() {
   const { user, userLogout } = useContext(UserContext);
@@ -18,27 +21,44 @@ function Dashboard() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(contactFormValidation),
   });
 
   const submit = (formData) => {
     contactRegister(formData);
+    reset();
+  };
+
+  const [contactToUpdate, setContactToUpdate] = useState(null);
+
+  useEffect(() => {}, [contacts]);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = (contact) => {
+    setContactToUpdate(contact);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
-    <>
+    <StyledMain>
       <StyledDivCircle />
       <header>
-        <StyledButton onClick={userLogout}>Logout</StyledButton>
-        <h1>Olá, {user.name}</h1>
+        <StyledButton onClick={userLogout}>logout</StyledButton>
+        <h1>olá, {user.name}</h1>
       </header>
       <StyledDivCircle2 />
       <StyledForm onSubmit={handleSubmit(submit)}>
         <FormInput
           type="text"
           id="name"
-          placeholder="digite aqui seu nome"
+          placeholder="nome do seu contato"
           label="nome"
           register={register("name")}
         />
@@ -46,7 +66,7 @@ function Dashboard() {
         <FormInput
           type="email"
           id="email"
-          placeholder="digite aqui seu email"
+          placeholder="email do seu contato"
           label="email"
           register={register("email")}
         />
@@ -54,7 +74,7 @@ function Dashboard() {
         <FormInput
           type="text"
           id="phone"
-          placeholder="número de telefone"
+          placeholder="número de telefone do seu contato"
           label="telefone"
           register={register("phone")}
         />
@@ -62,19 +82,30 @@ function Dashboard() {
         <StyledButton type="submit">registrar novo contato</StyledButton>
       </StyledForm>
       <div>
-        {contacts.map((contact) => (
-          <>
-            <p key={contact.id}>
-              {contact.name}, {contact.phone}, {contact.email}
-              <StyledButton>Editar</StyledButton>
-              <StyledButton onClick={contactDelete(contact.id)}>
-                Apagar
-              </StyledButton>
-            </p>
-          </>
-        ))}
+        {contacts.length > 0 ? (
+          contacts.map((contact) => (
+            <>
+              <p key={contact.id}>
+                {contact.name}, {contact.phone}, {contact.email}
+                <StyledButton onClick={() => openModal(contact)}>
+                  <img src={EditSVG} alt="Editar" />
+                </StyledButton>
+                <StyledButton onClick={() => contactDelete(contact.id)}>
+                  <img src={DeleteSVG} alt="Deletar" />
+                </StyledButton>
+              </p>
+            </>
+          ))
+        ) : (
+          <p>sem contatos, adicione um contato para começar!</p>
+        )}
       </div>
-    </>
+      <Modal
+        isOpen={modalIsOpen}
+        onClose={closeModal}
+        contact={contactToUpdate}
+      />
+    </StyledMain>
   );
 }
 
