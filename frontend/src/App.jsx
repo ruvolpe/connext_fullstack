@@ -1,4 +1,6 @@
 import { RoutesMain } from "./routes/RoutesMain";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { UserProvider } from "./contexts/UserContext";
 import "./App.css";
@@ -11,6 +13,7 @@ function App() {
     <UserProvider>
       <ContactsProvider>
         <RoutesMain setIsLogin={setIsLogin} />
+        <ToastContainer />
       </ContactsProvider>
     </UserProvider>
   );

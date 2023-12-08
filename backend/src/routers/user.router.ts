@@ -31,4 +31,4 @@ userRouter.patch(
   userControllers.update
 );
 
-userRouter.delete("/:id", verifyToken, isUserAdmin, userControllers.destroy);
+userRouter.delete("/:id", verifyToken, isUserOwner, userControllers.destroy);

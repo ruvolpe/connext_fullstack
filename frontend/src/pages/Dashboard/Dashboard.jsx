@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { StyledDivCircle, StyledDivCircle2, StyledMain } from "./styles";
 import { FormInput } from "../../fragments/FormInput";
@@ -10,6 +10,8 @@ import { ContactsContext } from "../../contexts/ContactsContext";
 import DeleteSVG from "../../assets/delete.svg";
 import EditSVG from "../../assets/edit.svg";
 import Modal from "../../components/Modal";
+import EditUserModal from "../../components/EditUserModal";
+import DeleteUserModal from "../../components/DeleteUserModal";
 
 function Dashboard() {
   const { user, userLogout } = useContext(UserContext);
@@ -33,9 +35,9 @@ function Dashboard() {
 
   const [contactToUpdate, setContactToUpdate] = useState(null);
 
-  useEffect(() => {}, [contacts]);
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalEditUserIsOpen, setModalEditUserIsOpen] = useState(false);
+  const [modalDeleteUserIsOpen, setModalDeleteUserIsOpen] = useState(false);
 
   const openModal = (contact) => {
     setContactToUpdate(contact);
@@ -46,11 +48,29 @@ function Dashboard() {
     setModalIsOpen(false);
   };
 
-  return (
+  const closeEditUserModal = () => {
+    setModalEditUserIsOpen(false);
+  };
+
+  const openEditUserModal = () => {
+    setModalEditUserIsOpen(true);
+  };
+
+  const openDeleteUserModal = () => {
+    setModalDeleteUserIsOpen(true);
+  };
+
+  const closeDeleteUserModal = () => {
+    setModalDeleteUserIsOpen(false);
+  };
+
+  return user ? (
     <StyledMain>
       <StyledDivCircle />
       <header>
         <StyledButton onClick={userLogout}>logout</StyledButton>
+        <StyledButton onClick={openEditUserModal}>Editar conta</StyledButton>
+        <StyledButton onClick={openDeleteUserModal}>Deletar conta</StyledButton>
         <h1>olá, {user.name}</h1>
       </header>
       <StyledDivCircle2 />
@@ -84,17 +104,15 @@ function Dashboard() {
       <div>
         {contacts.length > 0 ? (
           contacts.map((contact) => (
-            <>
-              <p key={contact.id}>
-                {contact.name}, {contact.phone}, {contact.email}
-                <StyledButton onClick={() => openModal(contact)}>
-                  <img src={EditSVG} alt="Editar" />
-                </StyledButton>
-                <StyledButton onClick={() => contactDelete(contact.id)}>
-                  <img src={DeleteSVG} alt="Deletar" />
-                </StyledButton>
-              </p>
-            </>
+            <p key={contact.id}>
+              {contact.name}, {contact.phone}, {contact.email}
+              <StyledButton onClick={() => openModal(contact)}>
+                <img src={EditSVG} alt="Editar" />
+              </StyledButton>
+              <StyledButton onClick={() => contactDelete(contact.id)}>
+                <img src={DeleteSVG} alt="Deletar" />
+              </StyledButton>
+            </p>
           ))
         ) : (
           <p>sem contatos, adicione um contato para começar!</p>
@@ -105,7 +123,19 @@ function Dashboard() {
         onClose={closeModal}
         contact={contactToUpdate}
       />
+      <EditUserModal
+        isOpen={modalEditUserIsOpen}
+        onClose={closeEditUserModal}
+        user={user}
+      />
+      <DeleteUserModal
+        isOpen={modalDeleteUserIsOpen}
+        onClose={closeDeleteUserModal}
+        user={user}
+      />
     </StyledMain>
+  ) : (
+    <p>Loading</p>
   );
 }
 

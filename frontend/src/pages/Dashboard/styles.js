@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const StyledMain = styled.main`
-  overflow: auto;
+  flex: 1;
+  overflow-y: scroll !important;
+  padding: 20px;
 `;
 
 export const StyledDiv = styled.div`
