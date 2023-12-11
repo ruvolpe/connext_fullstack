@@ -1,6 +1,11 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { StyledDivCircle, StyledDivCircle2, StyledMain } from "./styles";
+import {
+  StyledDivCircle,
+  StyledDivCircle2,
+  StyledMain,
+  StyledScrollBox,
+} from "./styles";
 import { FormInput } from "../../fragments/FormInput";
 import { contactFormValidation } from "../../components/ContactFormValidation/contactFormValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -66,58 +71,62 @@ function Dashboard() {
 
   return user ? (
     <StyledMain>
-      <StyledDivCircle />
-      <header>
-        <StyledButton onClick={userLogout}>logout</StyledButton>
-        <StyledButton onClick={openEditUserModal}>Editar conta</StyledButton>
-        <StyledButton onClick={openDeleteUserModal}>Deletar conta</StyledButton>
-        <h1>olá, {user.name}</h1>
-      </header>
-      <StyledDivCircle2 />
-      <StyledForm onSubmit={handleSubmit(submit)}>
-        <FormInput
-          type="text"
-          id="name"
-          placeholder="nome do seu contato"
-          label="nome"
-          register={register("name")}
-        />
-        {errors.name ? <p>{errors.name.message}</p> : null}
-        <FormInput
-          type="email"
-          id="email"
-          placeholder="email do seu contato"
-          label="email"
-          register={register("email")}
-        />
-        {errors.email ? <p>{errors.email.message}</p> : null}
-        <FormInput
-          type="text"
-          id="phone"
-          placeholder="número de telefone do seu contato"
-          label="telefone"
-          register={register("phone")}
-        />
-        {errors.phone ? <p>{errors.phone.message}</p> : null}
-        <StyledButton type="submit">registrar novo contato</StyledButton>
-      </StyledForm>
-      <div>
-        {contacts.length > 0 ? (
-          contacts.map((contact) => (
-            <p key={contact.id}>
-              {contact.name}, {contact.phone}, {contact.email}
-              <StyledButton onClick={() => openModal(contact)}>
-                <img src={EditSVG} alt="Editar" />
-              </StyledButton>
-              <StyledButton onClick={() => contactDelete(contact.id)}>
-                <img src={DeleteSVG} alt="Deletar" />
-              </StyledButton>
-            </p>
-          ))
-        ) : (
-          <p>sem contatos, adicione um contato para começar!</p>
-        )}
-      </div>
+      <StyledScrollBox>
+        <StyledDivCircle />
+        <header>
+          <StyledButton onClick={userLogout}>logout</StyledButton>
+          <StyledButton onClick={openEditUserModal}>Editar conta</StyledButton>
+          <StyledButton onClick={openDeleteUserModal}>
+            Deletar conta
+          </StyledButton>
+          <h1>olá, {user.name}</h1>
+        </header>
+        <StyledDivCircle2 />
+        <StyledForm onSubmit={handleSubmit(submit)}>
+          <FormInput
+            type="text"
+            id="name"
+            placeholder="nome do seu contato"
+            label="nome"
+            register={register("name")}
+          />
+          {errors.name ? <p>{errors.name.message}</p> : null}
+          <FormInput
+            type="email"
+            id="email"
+            placeholder="email do seu contato"
+            label="email"
+            register={register("email")}
+          />
+          {errors.email ? <p>{errors.email.message}</p> : null}
+          <FormInput
+            type="text"
+            id="phone"
+            placeholder="número de telefone do seu contato"
+            label="telefone"
+            register={register("phone")}
+          />
+          {errors.phone ? <p>{errors.phone.message}</p> : null}
+          <StyledButton type="submit">registrar novo contato</StyledButton>
+        </StyledForm>
+        <div>
+          {contacts.length > 0 ? (
+            contacts.map((contact) => (
+              <p key={contact.id}>
+                {contact.name}, {contact.phone}, {contact.email}
+                <StyledButton onClick={() => openModal(contact)}>
+                  <img src={EditSVG} alt="Editar" />
+                </StyledButton>
+                <StyledButton onClick={() => contactDelete(contact.id)}>
+                  <img src={DeleteSVG} alt="Deletar" />
+                </StyledButton>
+              </p>
+            ))
+          ) : (
+            <p>sem contatos, adicione um contato para começar!</p>
+          )}
+        </div>
+      </StyledScrollBox>
       <Modal
         isOpen={modalIsOpen}
         onClose={closeModal}

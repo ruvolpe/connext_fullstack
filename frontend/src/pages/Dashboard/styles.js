@@ -2,8 +2,13 @@ import styled from "styled-components";
 
 export const StyledMain = styled.main`
   flex: 1;
-  overflow-y: scroll !important;
+  height: 90vh;
   padding: 20px;
+`;
+
+export const StyledScrollBox = styled.div`
+  height: 95vh;
+  overflow-y: auto !important;
 `;
 
 export const StyledDiv = styled.div`

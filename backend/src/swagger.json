@@ -1,0 +1,103 @@
+{
+    "openapi":"3.0.3",
+    "info":{
+        "title": "Desafio full stack",
+        "description": "API para armazenamento de contatos de clientes",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "Development env"
+        }
+    ],
+    "paths": {
+        "/users":{
+            "post": {}
+        },
+        "/users/:id":{
+            "get": {},
+            "patch": {},
+            "delete":{}
+        },
+        "/contacts":{
+            "post":{},
+            "get":{}
+        },
+        "/contacts/:id":{
+            "patch":{},
+            "delete":{}
+        }
+    },
+    "components": {
+        "schemas": {
+            "createUser": {
+                "type":"object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "editUser": {
+                "type":"object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "createContact": {
+                "type":"object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    }
+                }
+            },
+            "editContact": {
+                "type":"object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "JWT":[]
+        }
+    ]
+}
