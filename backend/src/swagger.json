@@ -13,20 +13,36 @@
     ],
     "paths": {
         "/users":{
-            "post": {}
+            "post": {
+                "description": "Rota responsável por cadastrar um usuário no sistema."
+            }
         },
         "/users/:id":{
-            "get": {},
-            "patch": {},
-            "delete":{}
+            "get": {
+                "description": "Rota responsável por buscar um usuário cadastrado no sistema."
+            },
+            "patch": {
+                "description": "Rota responsável por alterar um usuário cadastrado no sistema."
+            },
+            "delete":{
+                "description": "Rota responsável por deletar um usuário cadastrado no sistema."
+            }
         },
         "/contacts":{
-            "post":{},
-            "get":{}
+            "post":{
+                "description": "Rota responsável por cadastrar um contato de um usuário cadastrado no sistema."
+            },
+            "get":{
+                "description": "Rota responsável por buscar um contato de um usuário cadastrado no sistema."
+            }
         },
         "/contacts/:id":{
-            "patch":{},
-            "delete":{}
+            "patch":{
+                "description": "Rota responsável por cadastrar um contato de um usuário cadastrado no sistema."
+            },
+            "delete":{
+                "description": "Rota responsável por deletar um contato de um usuário cadastrado no sistema."
+            }
         }
     },
     "components": {
