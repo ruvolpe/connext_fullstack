@@ -14,34 +14,293 @@
     "paths": {
         "/users":{
             "post": {
-                "description": "Rota responsável por cadastrar um usuário no sistema."
+                "description": "Rota responsável por cadastrar um usuário no sistema.",
+                "tags": ["Rotas de usuário"],
+                "requestBody": {
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/createUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "response": {
+                                        "value":{
+                                            "id": 16,
+                                            "name": "Joao",
+                                            "email": "joao@joao.com",
+                                            "phone": "281921931",
+                                            "admin": false,
+                                            "createdAt": "2024-01-04",
+                                            "updatedAt": "2024-01-04",
+                                            "deletedAt": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
             }
         },
         "/users/:id":{
             "get": {
-                "description": "Rota responsável por buscar um usuário cadastrado no sistema."
+                "description": "Rota responsável por buscar um usuário cadastrado no sistema.",
+                "tags": ["Rotas de usuário"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "response": {
+                                        "value":{
+                                            "id": 16,
+                                            "name": "Joao",
+                                            "email": "joao@joao.com",
+                                            "phone": "281921931",
+                                            "admin": false,
+                                            "createdAt": "2024-01-04",
+                                            "updatedAt": "2024-01-04",
+                                            "deletedAt": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "patch": {
-                "description": "Rota responsável por alterar um usuário cadastrado no sistema."
+                "description": "Rota responsável por alterar um usuário cadastrado no sistema.",
+                "tags": ["Rotas de usuário"],
+                "requestBody": {
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/editUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "response": {
+                                        "value":{
+                                            "id": 16,
+                                            "name": "joaozinho",
+                                            "email": "joao@joao.com",
+                                            "phone": "281921931",
+                                            "admin": false,
+                                            "createdAt": "2024-01-04",
+                                            "updatedAt": "2024-01-04",
+                                            "deletedAt": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
             },
             "delete":{
-                "description": "Rota responsável por deletar um usuário cadastrado no sistema."
+                "description": "Rota responsável por deletar um usuário cadastrado no sistema.",
+                "tags": ["Rotas de usuário"],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
             }
         },
+        "/login":{
+            "post": {
+                "description": "Rota responsável por fazer o login de um usuário cadastrado no sistema.",
+                "tags": ["Rota de login"],
+                "requestBody": {
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/loginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "response": {
+                                        "value":{
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImlhdCI6MTcwNDM4MjQ2OCwiZXhwIjoxNzA0Mzg2MDY4LCJzdWIiOiIxNiJ9.KHUzHUtxNvqt6dEG19UaU2-lF6TdESyQSAIoPd0EHFc",
+                                            "id": 16
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
+            }
+        },
+        
         "/contacts":{
             "post":{
-                "description": "Rota responsável por cadastrar um contato de um usuário cadastrado no sistema."
+                "description": "Rota responsável por cadastrar um contato de um usuário cadastrado no sistema.",
+                "tags": ["Rotas de contato"],
+                "requestBody": {
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/createContact"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "response": {
+                                        "value":{
+                                            "id": 49,
+                                            "name": "Felipe",
+                                            "email": "felipe@felipe.com",
+                                            "phone": "2119232131",
+                                            "createdAt": "2024-01-04"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
             },
             "get":{
-                "description": "Rota responsável por buscar um contato de um usuário cadastrado no sistema."
+                "description": "Rota responsável por buscar um contato de um usuário cadastrado no sistema.",
+                "tags": ["Rotas de contato"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "response":{
+                                        "value":{
+                                            "id": 49,
+                                            "name": "Felipe",
+                                            "email": "felipe@felipe.com",
+                                            "phone": "2119232131",
+                                            "createdAt": "2024-01-04"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
             }
         },
         "/contacts/:id":{
             "patch":{
-                "description": "Rota responsável por cadastrar um contato de um usuário cadastrado no sistema."
+                "description": "Rota responsável por cadastrar um contato de um usuário cadastrado no sistema.",
+                "tags": ["Rotas de contato"],
+                "requestBody": {
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/editContact"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "response": {
+                                        "value":{
+                                            "id": 49,
+                                            "name": "felipinho",
+                                            "email": "felipe@felipe.com",
+                                            "phone": "2119232131",
+                                            "createdAt": "2024-01-04"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
             },
             "delete":{
-                "description": "Rota responsável por deletar um contato de um usuário cadastrado no sistema."
+                "description": "Rota responsável por deletar um contato de um usuário cadastrado no sistema.",
+                "tags": ["Rotas de contato"],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{}]
             }
         }
     },
@@ -81,6 +340,17 @@
                     }
                 }
             },
+            "loginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+                },
             "createContact": {
                 "type":"object",
                 "properties": {
