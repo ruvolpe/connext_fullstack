@@ -1,19 +1,21 @@
-# Antes de tudo:
-1. Efetuar o git clone
+# First Step:
+1. Git clone the project
 
-## Para o Front:
+## Front-End:
 
 
 1. cd frontend
 2. npm install
 3. npm run dev
 
-## Para o Back:
+## Back-End:
 
 1. cd backend
 2. npm install
-3. Duplicar o arquivo .env.example e completar com as informações do seu ambiente no novo arquivo renomeado .env 
+3. Use .env.example to complete the informations of your enviroment and rename .env 
 4. npm run typeorm migration:run -- -d ./src/data-source
 5. npm run dev
 
-Encontre a documentação em "/api-documentation"
+The docs can be found at "/api-documentation"
+
+Happy coding! 
